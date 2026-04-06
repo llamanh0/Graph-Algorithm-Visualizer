@@ -1,20 +1,20 @@
-using System.Numerics;
+using UnityEngine;
 
 /// <summary>
-/// <para>Node :)</para>
-/// <para>It has;</para>
-/// <list type="bullet">
-///     <item>(int) <see cref="id"/></item>
-///     <item>(Vector2) <see cref="position"/></item>
-///     <item>(string) <see cref="label"/> => basically <term>string of <see cref="id"/></term></item>
-/// </list>
+/// Graf uzerindeki bir nokta (dugum)
 /// </summary>
 [System.Serializable]
 public class Node
 {
+    #region Fields
+
     public int id;
-    public Vector2 position;
-    public string label;
+    public Vector2 position;    // 2D pozisyon
+    public string label;        // Ekranda gorunecek etiket
+
+    #endregion
+
+    #region Constructor
 
     public Node(int id, Vector2 position)
     {
@@ -22,4 +22,6 @@ public class Node
         this.position = position;
         this.label = id.ToString();
     }
+
+    #endregion
 }

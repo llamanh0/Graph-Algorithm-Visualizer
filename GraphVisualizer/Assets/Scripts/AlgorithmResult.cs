@@ -1,13 +1,25 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// Algoritma sonuclarini tutan sinif
+/// </summary>
 public class AlgorithmResult
 {
+    #region Fields
+
     public string algorithmName;
     public List<AlgorithmStep> steps = new List<AlgorithmStep>();
 
-    public float[] distances;           // Dijkstra, Bellman-Ford
-    public int[] predecessors;          // For road backtracking
-    public List<Edge> resultEdges;      // MST edges (Prim, Kruskal)
+    // Dijkstra ve Bellman-Ford icin
+    public float[] distances;
+    public int[] predecessors;
+
+    // MST algoritmalari icin (Prim, Kruskal)
+    public List<Edge> resultEdges;
     public float totalCost;
-    public bool hasNegativeCycle;       // Bellman-Ford
+
+    // Bellman-Ford icin
+    public bool hasNegativeCycle;
+
+    #endregion
 }

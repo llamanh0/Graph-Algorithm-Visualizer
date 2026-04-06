@@ -1,29 +1,20 @@
 /// <summary>
-/// <para>Edge of between two nodes</para>
-/// <para>It has;</para>
-/// <list type="bullet">
-///     <item>
-///      Mandatory:
-///         <list type="number">
-///             <item>(int) before and after nodeIDs: <see cref="fromNodeId"/>, <see cref="toNodeId"/></item>
-///             <item>(float) <see cref="weight"/></item>
-///         </list>
-///     </item>
-///     <item>
-///     Non-mandatory:
-///         <list type="number">
-///             <item>(bool) <see cref="isDirected"/>, default value is <c>false</c></item>
-///         </list>
-///     </item>
-/// </list>
+/// Iki node arasindaki baglanti (kenar)
+/// Agirlik ve yon bilgisi tutar
 /// </summary>
 [System.Serializable]
 public class Edge
 {
-    public int fromNodeId;
-    public int toNodeId;
-    public float weight;
-    public bool isDirected;
+    #region Fields
+
+    public int fromNodeId;      // Baslangic node
+    public int toNodeId;        // Bitis node
+    public float weight;        // Agirligi (maliyeti)
+    public bool isDirected;     // Yonlu mu?
+
+    #endregion
+
+    #region Constructor
 
     public Edge(int from, int to, float weight, bool isDirected = false)
     {
@@ -32,4 +23,6 @@ public class Edge
         this.weight = weight;
         this.isDirected = isDirected;
     }
+
+    #endregion
 }

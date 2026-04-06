@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Represents a single discrete step within a graph algorithm for visualization and logging.
+/// Algoritmanin her adimini gosteren sinif
+/// Gorsel degisiklikleri ve mesajlari tutar
 /// </summary>
-/// <remarks>
-/// <para>Key Features:</para>
-/// <list type="bullet">
-///     <item><description>Stores the <see cref="StepActionType"/> to trigger visual changes (colors, labels).</description></item>
-///     <item><description>Holds metadata like <see cref="nodeId"/> and <see cref="value"/> for UI updates.</description></item>
-///     <item><description>Provides <c>static factory methods</c> for clean and readable step creation.</description></item>
-/// </list>
-/// </remarks>
 [System.Serializable]
 public class AlgorithmStep
 {
+    #region Fields
+
     public StepActionType actionType;
     public int nodeId = -1;
     public int secondNodeId = -1;
@@ -23,6 +18,11 @@ public class AlgorithmStep
     public string message;
     public Color color = Color.yellow;
 
+    #endregion
+
+    #region Factory Methods
+
+    // Node'u renklendir
     public static AlgorithmStep HighlightNode(int nodeId, Color color, string msg = "")
     {
         return new AlgorithmStep
@@ -34,6 +34,7 @@ public class AlgorithmStep
         };
     }
 
+    // Edge'i renklendir
     public static AlgorithmStep HighlightEdge(int from, int to, Color color, string msg = "")
     {
         return new AlgorithmStep
@@ -46,6 +47,7 @@ public class AlgorithmStep
         };
     }
 
+    // Mesafe guncelle
     public static AlgorithmStep UpdateDist(int nodeId, float newDist, float oldDist, string msg = "")
     {
         return new AlgorithmStep
@@ -58,6 +60,7 @@ public class AlgorithmStep
         };
     }
 
+    // Sadece mesaj yaz
     public static AlgorithmStep Log(string message)
     {
         return new AlgorithmStep
@@ -66,4 +69,6 @@ public class AlgorithmStep
             message = message
         };
     }
+
+    #endregion
 }

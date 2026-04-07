@@ -165,7 +165,7 @@ public class EdgeVisual : MonoBehaviour
         pos.z = -0.1f; // Biraz onde (line'in ustunde)
         arrowHead.transform.position = pos;
 
-        // Rotasyonu ayarla - node merkezine baksın
+        // Rotasyonu ayarla - node merkezine baksin
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         arrowHead.transform.rotation = Quaternion.Euler(0, 0, angle);
     }

@@ -109,7 +109,7 @@ public class Graph
         for (int i = 0; i < n; i++)
             matrix[i, i] = 0;
 
-        // Edge mesafelerini yerleştir
+        // Edge mesafelerini yerlestir
         foreach (var edge in edges)
         {
             matrix[edge.fromNodeId, edge.toNodeId] = edge.weight;

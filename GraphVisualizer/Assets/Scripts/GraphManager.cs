@@ -68,6 +68,10 @@ public class GraphManager : MonoBehaviour
     {
         InitializeGraph();
         SetupUI();
+
+        if (UIManager.Instance != null)
+            UIManager.Instance.Initialize();
+
         LoadSampleGraph();
         LogMessage("Hazir! Bir algoritma secin ve Calistir'a basin.");
     }
@@ -316,18 +320,18 @@ public class GraphManager : MonoBehaviour
             case 0: // Dijkstra
                 currentResult = DijkstraAlgorithm.Run(graph, 0);
                 break;
+
             case 1: // Bellman-Ford
-                // TODO: BellmanFordAlgorithm.Run(graph, 0);
-                LogMessage("Bellman-Ford henuz implement edilmedi!");
-                return;
+                currentResult = BellmanFordAlgorithm.Run(graph, 0);
+                break;
+
             case 2: // Prim
-                // TODO: PrimAlgorithm.Run(graph, 0);
-                LogMessage("Prim henuz implement edilmedi!");
-                return;
+                currentResult = PrimAlgorithm.Run(graph, 0);
+                break;
+
             case 3: // Kruskal
-                // TODO: KruskalAlgorithm.Run(graph);
-                LogMessage("Kruskal henuz implement edilmedi!");
-                return;
+                currentResult = KruskalAlgorithm.Run(graph);
+                break;
         }
 
         currentStepIndex = 0;

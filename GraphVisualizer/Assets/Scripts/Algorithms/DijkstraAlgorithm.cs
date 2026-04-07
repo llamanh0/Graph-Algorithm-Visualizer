@@ -86,27 +86,30 @@ public static class DijkstraAlgorithm
     }
 
     private static void ProcessNeighbors(Graph graph, int u, float[] dist, int[] prev,
-        bool[] visited, AlgorithmResult result)
+    bool[] visited, AlgorithmResult result)
     {
         List<Edge> neighbors = graph.GetEdgesFromNode(u);
+
+        // Zaten islenmis komsulari takip et
+        HashSet<int> processedNeighbors = new HashSet<int>();
 
         foreach (var edge in neighbors)
         {
             int v = edge.toNodeId;
 
-            // HER KENARI ONCE GORSELLESTIR
+            // Ayni komsuyu iki kere isleme (yonsuz grafta olabilir)
+            if (processedNeighbors.Contains(v))
+                continue;
+
+            processedNeighbors.Add(v);
+
+            if (visited[v])
+                continue;
+
+            // Kenari gorsellestir
             result.steps.Add(AlgorithmStep.HighlightEdge(
                 u, v, Color.yellow,
                 $"Kenar ({u} -> {v}) inceleniyor, agirlik = {edge.weight}"));
-
-            // Eger zaten ziyaret edildiyse
-            if (visited[v])
-            {
-                result.steps.Add(AlgorithmStep.HighlightEdge(
-                    u, v, Color.gray,
-                    $"Dugum {v} zaten ziyaret edildi (mesafe kesinlesmis), bu kenar atlanacak"));
-                continue;
-            }
 
             float newDist = dist[u] + edge.weight;
 
@@ -133,7 +136,7 @@ public static class DijkstraAlgorithm
         string oldDistStr = oldDist == float.MaxValue ? "sonsuz" : oldDist.ToString("F1");
         result.steps.Add(AlgorithmStep.UpdateDist(
             v, newDist, oldDist,
-            $"Mesafe guncellendi: dugum {v}: {oldDistStr} -> {newDist:F1} (uzerinden: {u})"));
+            $"Mesafe guncellendi: dugum {v}: {oldDistStr} -> {newDist:F1} ({u} uzerinden)"));
 
         result.steps.Add(AlgorithmStep.HighlightEdge(
             u, v, Color.green,

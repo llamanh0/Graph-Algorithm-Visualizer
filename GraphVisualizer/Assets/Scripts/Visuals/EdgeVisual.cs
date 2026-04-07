@@ -137,7 +137,7 @@ public class EdgeVisual : MonoBehaviour
         // ARROW BASINI LINE'IN TAM BITTIGINDE KOY
         if (isDirected && arrowHead != null && arrowHead.gameObject.activeSelf)
         {
-            UpdateArrowPositionAligned(lineEnd, direction, direction);
+            UpdateArrowPositionAligned(lineEnd, direction);
         }
     }
 
@@ -154,7 +154,7 @@ public class EdgeVisual : MonoBehaviour
     }
 
     // Arrow'u line ile hizala
-    private void UpdateArrowPositionAligned(Vector3 lineEnd, Vector3 nodeCenter, Vector3 direction)
+    private void UpdateArrowPositionAligned(Vector3 lineEnd, Vector3 direction)
     {
         // Arrow'un GOVDESINI line'in bittigi yere koy
         // Arrow'un UCU node'un merkezine bakacak
@@ -167,7 +167,7 @@ public class EdgeVisual : MonoBehaviour
 
         // Rotasyonu ayarla - node merkezine baksin
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        arrowHead.transform.rotation = Quaternion.Euler(0, 0, angle);
+        arrowHead.transform.rotation = Quaternion.Euler(0, 0, angle + 30);
     }
 
     #endregion

@@ -166,6 +166,8 @@ MonoBehaviour:
   arrowSize: 0.3
   arrowDistance: 0.4
   nodeRadius: 0.5
+  TEMP_Y: 0
+  TEMP_X: 30
 --- !u!1 &6499656715010050983
 GameObject:
   m_ObjectHideFlags: 0

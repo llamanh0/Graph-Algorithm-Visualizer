@@ -102,3 +102,7 @@ InitTestScene*.unity*
 /Builds/
 *.apk
 *.exe
+
+*.shader
+*.hlsl
+*.cginc

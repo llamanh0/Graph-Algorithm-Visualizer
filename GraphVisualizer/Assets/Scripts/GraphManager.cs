@@ -118,7 +118,7 @@ public class GraphManager : MonoBehaviour
         loadSampleButton.onClick.AddListener(LoadSampleGraph);
 
         // Hiz ayari
-        speedSlider.onValueChanged.AddListener(val => stepDelay = 1.5f - val);
+        speedSlider.onValueChanged.AddListener(val => stepDelay = 1.2f - val);
     }
 
     #endregion
@@ -481,12 +481,12 @@ public class GraphManager : MonoBehaviour
 
         if (isAutoPlaying)
         {
-            autoPlayButton.GetComponentInChildren<TextMeshProUGUI>().text = "Stop";
+            autoPlayButton.GetComponentInChildren<TextMeshProUGUI>().text = "DUR";
             StartCoroutine(AutoPlayCoroutine());
         }
         else
         {
-            autoPlayButton.GetComponentInChildren<TextMeshProUGUI>().text = "Auto Play";
+            autoPlayButton.GetComponentInChildren<TextMeshProUGUI>().text = "OTOMATIK";
         }
     }
 
@@ -554,11 +554,30 @@ public class GraphManager : MonoBehaviour
         if (logText != null)
         {
             logText.text += msg + "\n";
-            Canvas.ForceUpdateCanvases();
-            if (logScrollRect != null)
-                logScrollRect.verticalNormalizedPosition = 0;
         }
+
+        if (logScrollRect != null)
+        {
+            StartCoroutine(ScrollToBottom());
+        }
+
         Debug.Log(msg);
+    }
+
+    private IEnumerator ScrollToBottom()
+    {
+        // Layout guncellemesi icin bekle
+        yield return null;
+        yield return null;
+
+        // Canvas'i zorla guncelle
+        Canvas.ForceUpdateCanvases();
+
+        // En alta scroll
+        if (logScrollRect != null)
+        {
+            logScrollRect.verticalNormalizedPosition = 0f;
+        }
     }
 
     #endregion

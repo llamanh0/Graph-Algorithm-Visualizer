@@ -159,13 +159,7 @@ public static class DijkstraAlgorithm
         result.distances = dist;
         result.predecessors = prev;
 
-        string summary = "Dijkstra Tamamlandi!\nMesafeler: ";
-        for (int i = 0; i < n; i++)
-        {
-            string d = dist[i] == float.MaxValue ? "sonsuz" : dist[i].ToString("F1");
-            summary += $"\n  Dugum {i}: {d}";
-        }
-        result.steps.Add(AlgorithmStep.Log(summary));
+        result.steps.Add(AlgorithmStep.Log("Dijkstra Tamamlandi!"));
     }
 
     #endregion

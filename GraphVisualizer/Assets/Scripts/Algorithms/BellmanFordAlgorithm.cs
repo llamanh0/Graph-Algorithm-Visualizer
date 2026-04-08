@@ -212,21 +212,8 @@ public static class BellmanFordAlgorithm
         }
         else
         {
-            LogFinalDistances(result, dist, n);
+            result.steps.Add(AlgorithmStep.Log("Bellman-Ford Tamamlandi!"));
         }
-    }
-
-    private static void LogFinalDistances(AlgorithmResult result, float[] dist, int n)
-    {
-        string summary = "Bellman-Ford Tamamlandi!\nMesafeler:";
-
-        for (int i = 0; i < n; i++)
-        {
-            string d = dist[i] == float.MaxValue ? "sonsuz" : dist[i].ToString("F1");
-            summary += $"\n  Dugum {i}: {d}";
-        }
-
-        result.steps.Add(AlgorithmStep.Log(summary));
     }
 
     #endregion

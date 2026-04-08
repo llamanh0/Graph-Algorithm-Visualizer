@@ -57,6 +57,9 @@ public class UIManager : MonoBehaviour
     public Image buildPanelBg;
     public Image logPanelBg;
 
+    [Header("ScrollView")]
+    public ScrollRect logScrollRect;
+
     #endregion
 
     #region Initialization
@@ -81,12 +84,12 @@ public class UIManager : MonoBehaviour
     private void StyleAllButtons()
     {
         StyleButton(runButton, UIColors.Success, "CALISTIR", 22);
-        StyleButton(stepButton, UIColors.Primary, "SONRAKI ADIM", 18);
-        StyleButton(resetButton, UIColors.Danger, "SIFIRLA", 18);
-        StyleButton(autoPlayButton, UIColors.Warning, "OTOMATIK", 18);
-        StyleButton(loadSampleButton, UIColors.Secondary, "ORNEK YUKLE", 16);
-        StyleButton(addNodeButton, UIColors.Elevated, "DUGUM EKLE", 16);
-        StyleButton(addEdgeButton, UIColors.Elevated, "KENAR EKLE", 16);
+        StyleButton(stepButton, UIColors.Primary, "SONRAKI ADIM", 22);
+        StyleButton(resetButton, UIColors.Danger, "SIFIRLA", 22);
+        StyleButton(autoPlayButton, UIColors.Warning, "OTOMATIK", 22);
+        StyleButton(loadSampleButton, UIColors.Secondary, "ORNEK YUKLE", 22);
+        StyleButton(addNodeButton, UIColors.Elevated, "+ DUGUM", 22);
+        StyleButton(addEdgeButton, UIColors.Elevated, "+ KENAR", 22);
     }
 
     private void StyleButton(Button btn, Color32 bgColor, string text, int fontSize)
@@ -284,7 +287,7 @@ public class UIManager : MonoBehaviour
         TextMeshProUGUI placeholder = weightInput.placeholder as TextMeshProUGUI;
         if (placeholder != null)
         {
-            placeholder.text = "Agirlik...";
+            placeholder.text = "Kenar Eklemeden Agirlik Girin...";
             placeholder.fontSize = 16;
             placeholder.color = UIColors.TextMuted;
             placeholder.fontStyle = FontStyles.Italic;
@@ -319,17 +322,6 @@ public class UIManager : MonoBehaviour
 
         // Background
         Image toggleBg = directedToggle.targetGraphic as Image;
-        if (toggleBg != null)
-        {
-            ColorBlock colors = directedToggle.colors;
-            colors.normalColor = UIColors.Elevated;
-            colors.highlightedColor = UIColors.Secondary;
-            colors.pressedColor = UIColors.Primary;
-            colors.selectedColor = UIColors.Primary;
-            colors.disabledColor = new Color(0.5f, 0.5f, 0.5f);
-            colors.colorMultiplier = 1f;
-            directedToggle.colors = colors;
-        }
 
         // Checkmark
         Image checkmark = directedToggle.graphic as Image;
@@ -345,6 +337,36 @@ public class UIManager : MonoBehaviour
             label.text = "Yonlu Graf";
             label.fontSize = 16;
             label.color = UIColors.TextPrimary;
+        }
+
+        // Renk degisimi icin event dinle
+        directedToggle.onValueChanged.AddListener((bool isOn) =>
+        {
+            if (toggleBg != null)
+            {
+                toggleBg.color = isOn ? UIColors.Primary : UIColors.Elevated;
+            }
+        });
+
+        // Ilk rengi ayarla
+        if (toggleBg != null)
+        {
+            toggleBg.color = directedToggle.isOn ? UIColors.Primary : UIColors.Elevated;
+        }
+
+        // Color block ayarlari
+        if (toggleBg != null)
+        {
+            ColorBlock cb = new ColorBlock();
+            cb.normalColor = Color.white;
+            cb.highlightedColor = new Color(1.1f, 1.1f, 1.1f);
+            cb.pressedColor = new Color(0.9f, 0.9f, 0.9f);
+            cb.selectedColor = Color.white;
+            cb.disabledColor = new Color(0.5f, 0.5f, 0.5f);
+            cb.colorMultiplier = 1f;
+            cb.fadeDuration = 0.1f;
+
+            directedToggle.colors = cb;
         }
     }
 

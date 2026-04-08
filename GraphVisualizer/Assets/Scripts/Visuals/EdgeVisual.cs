@@ -135,10 +135,10 @@ public class EdgeVisual : MonoBehaviour
         UpdateWeightPosition(start, end, direction);
 
         // ARROW BASINI LINE'IN TAM BITTIGINDE KOY
-        if (isDirected && arrowHead != null && arrowHead.gameObject.activeSelf)
-        {
-            UpdateArrowPositionAligned(lineEnd, direction);
-        }
+if (isDirected && arrowHead != null && arrowHead.gameObject.activeSelf)
+{
+    UpdateArrowPositionAligned(lineEnd, direction);
+}
     }
 
     // Agirlik etiketini guncelle
